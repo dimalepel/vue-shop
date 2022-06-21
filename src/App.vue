@@ -1,5 +1,4 @@
 <template>
-  <p>Hello Vue!</p>
   <v-main-wrapper/>
 </template>
 
