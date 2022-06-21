@@ -23,17 +23,13 @@ export default {
   methods: {},
   watch: {},
   mounted() {
-    console.log('!');
+    console.log('Hello Vue!');
   }
 }
 </script>
 
 <style>
   .v-main-wrapper {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    flex-direction: column;
     max-width: 900px;
     margin: 0 auto;
   }
