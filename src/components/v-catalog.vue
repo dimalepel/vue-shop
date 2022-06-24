@@ -1,5 +1,9 @@
 <template>
   <div class="v-catalog">
+    <router-link :to="{ name: 'cart' }">
+      <div class="v-catalog__cart-lik">Cart: {{ CART.length }}</div>
+    </router-link>
+
     <h1>Catalog</h1>
 
     <div class="v-catalog__list">
@@ -20,7 +24,6 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: "v-catalog",
-  data: () => ({}),
   components: {
     vCatalogItem,
   },
@@ -41,7 +44,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'PRODUCTS'
+      'PRODUCTS',
+      'CART'
     ])
   }
 }
@@ -55,5 +59,13 @@ export default {
       justify-content: space-between;
       align-items: center;
      }
+
+    &__cart-lik {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: $padding * 2;
+      border: 1px solid #aeaeae;
+    }
   }
 </style>
