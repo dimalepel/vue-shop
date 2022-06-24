@@ -4,7 +4,7 @@
     <p class="v-catalog-item__name">{{ product_data.name }}</p>
     <p class="v-catalog-item__price">Price: {{ product_data.price }} $</p>
     <button class="v-catalog-item__add-cart btn"
-      @click="sendArticle">Add to cart</button>
+      @click="addToCart">Add to cart</button>
   </div>
 </template>
 
@@ -20,8 +20,8 @@ export default {
     }
   },
   methods: {
-    sendArticle() {
-      this.$emit('sendArticle', this.product_data.article);
+    addToCart() {
+      this.$emit('addToCart', this.product_data);
     }
   }
 }
