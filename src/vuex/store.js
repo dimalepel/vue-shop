@@ -21,9 +21,11 @@ const store = createStore({
         });
         if (!isProductExists) {
           state.cart.push(product);
+          product.quantity = 1;
         }
       } else {
         state.cart.push(product);
+        product.quantity = 1;
       }
     },
     REMOVE_FROM_CART: (state, index) => {
