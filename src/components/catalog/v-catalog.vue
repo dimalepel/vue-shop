@@ -6,6 +6,12 @@
 
     <h1>Catalog</h1>
 
+    <v-select
+      :options="options"
+      :currentSelectValue="currentSelectValue"
+      @changeSelect="changeSelect"
+    />
+
     <div class="v-catalog__list">
       <v-catalog-item
         v-for="product in PRODUCTS"
@@ -20,12 +26,24 @@
 
 <script>
 import vCatalogItem from '@/components/catalog/v-catalog-item';
+import vSelect from '@/components/ui/v-select';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: "v-catalog",
+  data: () => ({
+    currentSelectValue: 'Select',
+    options: [
+      { name: 'Option 1', value: 1 },
+      { name: 'Option 2', value: 2 },
+      { name: 'Option 3', value: 3 },
+      { name: 'Option 4', value: 4 },
+      { name: 'Option 5', value: 5 },
+    ]
+  }),
   components: {
     vCatalogItem,
+    vSelect
   },
   methods: {
     ...mapActions([
@@ -34,6 +52,9 @@ export default {
     ]),
     addToCart(data) {
       this.ADD_TO_CART(data);
+    },
+    changeSelect(option) {
+      this.currentSelectValue = option.name;
     }
   },
   mounted() {
