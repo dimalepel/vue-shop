@@ -62,6 +62,7 @@ export default {
   .v-select {
     position: relative;
     width: 200px;
+    margin: 0 auto $margin * 3;
 
     &__title {
       display: block;
