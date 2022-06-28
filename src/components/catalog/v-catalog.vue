@@ -7,14 +7,14 @@
     <h1>Catalog</h1>
 
     <v-select
-      :options="options"
+      :options="categories"
       :currentSelectValue="currentSelectValue"
-      @changeSelect="changeSelect"
+      @changeSelect="sortByCategory"
     />
 
     <div class="v-catalog__list">
       <v-catalog-item
-        v-for="product in PRODUCTS"
+        v-for="product in filteredProducts"
         :key="product.article"
         :product_data="product"
         @addToCart="addToCart"
@@ -32,14 +32,13 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
   name: "v-catalog",
   data: () => ({
-    currentSelectValue: 'Select',
-    options: [
-      { name: 'Option 1', value: 1 },
-      { name: 'Option 2', value: 2 },
-      { name: 'Option 3', value: 3 },
-      { name: 'Option 4', value: 4 },
-      { name: 'Option 5', value: 5 },
-    ]
+    currentSelectValue: 'Все',
+    categories: [
+      { name: 'Все', value: 'all' },
+      { name: 'Мужские', value: 'м' },
+      { name: 'Женские', value: 'ж' },
+    ],
+    sortedProducts: []
   }),
   components: {
     vCatalogItem,
@@ -53,8 +52,15 @@ export default {
     addToCart(data) {
       this.ADD_TO_CART(data);
     },
-    changeSelect(option) {
-      this.currentSelectValue = option.name;
+    sortByCategory(category) {
+      this.currentSelectValue = category.name;
+      this.sortedProducts = [];
+      let vm = this;
+      this.PRODUCTS.map(function (item) {
+        if (item.category === category.name) {
+          vm.sortedProducts.push(item);
+        }
+      })
     }
   },
   mounted() {
@@ -64,7 +70,14 @@ export default {
     ...mapGetters([
       'PRODUCTS',
       'CART'
-    ])
+    ]),
+    filteredProducts() {
+      if (this.sortedProducts.length) {
+        return this.sortedProducts;
+      } else {
+        return this.PRODUCTS;
+      }
+    }
   }
 }
 </script>
