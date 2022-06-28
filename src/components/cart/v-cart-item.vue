@@ -1,6 +1,8 @@
 <template>
   <div class="v-cart-item">
-    <img class="v-cart-item__image" :src="require('../assets/images/' + cart_item_data.image)" alt="img">
+    <img
+        class="v-cart-item__image"
+        :src="require('../../assets/images/' + cart_item_data.image)" alt="img">
     <div class="v-cart-item__info">
       <p>{{ cart_item.name }}</p>
       <p>Price: {{ cart_item.price }} $</p>
@@ -9,16 +11,23 @@
     <div class="v-cart-item__quantity">
       <p>Qty:</p>
       <div class="v-cart-item__counter">
-        <button @click="decrementItem" type="button">-</button>
+        <button
+            @click="decrementItem"
+            type="button"
+        >-</button>
         <span class="v-cart-item__digit">
           {{ cart_item.quantity }}
         </span>
-        <button @click="incrementItem" type="button">+</button>
+        <button
+            @click="incrementItem"
+            type="button"
+        >+</button>
       </div>
 
     </div>
-    <button class="v-cart-item__remove btn"
-            @click="deleteFromCart"
+    <button
+        class="v-cart-item__remove btn"
+        @click="deleteFromCart"
     >Delete</button>
   </div>
 </template>

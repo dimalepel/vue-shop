@@ -6,7 +6,10 @@
 
     <h1>Cart</h1>
 
-    <div v-if="CART.length" class="v-cart__list">
+    <div
+        v-if="CART.length"
+        class="v-cart__list"
+    >
       <v-cart-item
           v-for="(item, index) in CART"
           :key="item.article"
@@ -27,7 +30,7 @@
 </template>
 
 <script>
-import vCartItem from '@/components/v-cart-item';
+import vCartItem from '@/components/cart/v-cart-item';
 import { mapActions, mapGetters } from "vuex";
 
 export default {
